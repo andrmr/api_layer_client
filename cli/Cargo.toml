@@ -1,0 +1,13 @@
+[package]
+name = "cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "cli"
+path = "src/main.rs"
+test = false
+
+[dependencies]
+api_layer_client = { path = "../lib" }
+clap = "^4.0.18"
