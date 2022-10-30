@@ -23,6 +23,10 @@ enum Commands {
         #[arg(short, long, value_name="SOURCE")]
         #[arg(help="Reference currency")]
         source: String,
+
+        #[arg(short, long, value_name="CURRENCIES...")]
+        #[arg(help="List of comma delimited currencies to limit the response to.")]
+        currencies: Option<Vec<String>>
     },
 }
 
@@ -39,7 +43,7 @@ async fn main() {
 
     match &cli.command {
         Commands::List => handle_result(client.list().await),
-        Commands::Live { source } => handle_result(client.live(&source).await),
+        Commands::Live { source, currencies } => handle_result(client.live(&source, currencies.as_ref()).await),
     };
 }
 

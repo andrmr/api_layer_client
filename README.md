@@ -11,7 +11,7 @@ Lib todo:
 * */change* Request any currency's change parameters (margin, percentage).  
 
 CLI todo:
-* deal with optional args
+* ~~deal with optional args~~
 * add better error handling
 * add tests
 * add remaining endpoints
