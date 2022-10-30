@@ -38,10 +38,14 @@ impl ApiLayerClient {
     }
 
     /// Get the most recent exchange rate data.
-    pub async fn live(&self, source: &str) -> ApiResult<HashMap<String, f64>> {
-        let params = [
-            ("source", source),
-        ];
+    pub async fn live(&self, source: &str, currencies: Option<&Vec<String>>) -> ApiResult<HashMap<String, f64>> {
+        let mut params = HashMap::from([
+            ("source", source.to_string()),
+        ]);
+
+        if let Some(currencies) = currencies {
+            params.insert("currencies", currencies.join(","));
+        }
 
         let url = reqwest::Url::parse_with_params("https://api.apilayer.com/currency_data/live", &params)?;
         let json = self.get_json(url).await?;

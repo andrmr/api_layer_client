@@ -19,6 +19,13 @@ async fn test_get_list() {
 
 #[tokio::test]
 async fn test_get_live() {
-    let live = CLIENT.live("EUR").await;
+    let live = CLIENT.live("EUR", None).await;
+    assert!(live.is_ok(), "Reason: {:?}", live.err())
+}
+
+#[tokio::test]
+async fn test_get_live_with_currencies() {
+    let currencies = vec!["USD".to_string(), "RON".to_string()];
+    let live = CLIENT.live("EUR", Some(&currencies)).await;
     assert!(live.is_ok(), "Reason: {:?}", live.err())
 }
