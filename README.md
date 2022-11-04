@@ -15,3 +15,7 @@ CLI todo:
 * add better error handling
 * add tests
 * add remaining endpoints
+
+Python bindings todo:  
+* export as class
+* add tests
